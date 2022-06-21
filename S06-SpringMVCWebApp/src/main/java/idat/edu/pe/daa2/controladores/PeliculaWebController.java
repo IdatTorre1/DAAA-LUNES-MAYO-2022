@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import idat.edu.pe.daa2.jpa.modelo.Pelicula;
 import idat.edu.pe.daa2.servicios.PeliculasServicio;
@@ -45,7 +47,21 @@ public class PeliculaWebController {
 	
 	}
 	
+	@RequestMapping(value = "/actualizar/{id}")
+	public ModelAndView editarPelicula(@PathVariable(name = "id") int id) {
+	    ModelAndView mav = new ModelAndView("/moduloPeliculas/editarPelicula");
+	    Pelicula pelicula = servicio.buscarPorId(id);
+	    mav.addObject("pelicula", pelicula);
+	    return mav;
+	}
 	
 	
 	
 }
+	
+	
+	
+	
+	
+	
+	

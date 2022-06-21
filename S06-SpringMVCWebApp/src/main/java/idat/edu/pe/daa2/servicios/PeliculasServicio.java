@@ -29,4 +29,30 @@ public class PeliculasServicio {
 		return repositorio.save(pelicula);
 	}
 
+	public Pelicula actualizar (Pelicula peliculaActualizar) {
+		
+		
+		Pelicula peliculaActual= repositorio.findById(peliculaActualizar.getIdPelicula()).get();
+		
+		peliculaActual.setIdPelicula(peliculaActualizar.getIdPelicula());
+		peliculaActual.setNombre(peliculaActualizar.getNombre());
+		peliculaActual.setDuracion(peliculaActualizar.getDuracion());
+		peliculaActual.setClasificacion(peliculaActualizar.getClasificacion());
+		peliculaActual.setIdioma(peliculaActualizar.getIdioma());
+		peliculaActual.setGenero(peliculaActualizar.getGenero());
+		peliculaActual.setFormato(peliculaActualizar.getFormato());
+		peliculaActual.setSinopsis(peliculaActualizar.getSinopsis());
+		
+		Pelicula peliculaActualizado = repositorio.save(peliculaActual);
+		return peliculaActualizado;
+	}
+	
+	public Pelicula buscarPorId(Integer id) {
+		
+		return repositorio.findById(id).get();
+		
+	}
+	
+	
+	
 }
