@@ -1,4 +1,4 @@
-/*package idat.edu.pe.daa2.jpa.modelo;
+package idat.edu.pe.daa2.jpa.modelo;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -56,8 +56,8 @@ public class Funciones implements Serializable{
     
     @JoinColumn(name = "pelicula", referencedColumnName = "idPelicula")
     @ManyToOne(optional = false)
-    
     private Pelicula pelicula;
+    
     @JoinColumn(name = "sala", referencedColumnName = "idSala")
     @ManyToOne(optional = false)
     private Sala sala;
@@ -164,4 +164,4 @@ public class Funciones implements Serializable{
 	
 	
 	
-}*/
+}
