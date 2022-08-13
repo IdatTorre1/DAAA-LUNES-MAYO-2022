@@ -1,0 +1,65 @@
+<div class="card shadow mb-4">
+  <div class="card-header py-3 bg-light">
+    <h6 class="m-0 font-weight-bold text-dark">Modulo de Habitaciones</h6>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <button class="btn btn-success btn-sm" type="button" [routerLink]="['/dashboard/agregar-habitacion']"
+          routerLinkActive="router-link-active">Crear
+          Nuevo</button>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="tabla" style="width:100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Numero</th>
+                <th>Detalle</th>
+                <th>Precio</th>
+                <th>Categoria</th>
+                <th>Piso</th>
+                <th>Estado</th>
+                <th class="text-center">Acciones</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let habitacion of habitaciones | paginate: { itemsPerPage: 5, currentPage: page}">
+                <td>{{habitacion.numero}}</td>
+                <td>{{habitacion.detalle}}</td>
+                <td>{{habitacion.precio | number : '1.2-2'}}</td>
+                <td>{{habitacion.piso.descripcion}}</td>
+                <td>{{habitacion.categoria.descripcion}}</td>
+                <td *ngIf="habitacion.estado; else noActivo">
+                  <span class="badge badge-success p-2">Activo</span>
+                </td>
+                <ng-template #noActivo>
+                  <td>
+                    <span class="badge badge-danger p-2">No Activo</span>
+                  </td>
+                </ng-template>
+
+                <td class="text-center">
+                  <button class="btn btn-primary btn-editar btn-sm fas fa-pen"
+                    (click)="actualizarHabitacion(habitacion.idhabitacion)"></button>
+                  <!-- <button class="btn btn-primary btn-editar btn-sm fas fa-pen"
+                    [routerLink]="['/dashboard/editar-categoria/{{categoria.idcategoria}}']"
+                    routerLinkActive="router-link-active"></button> -->
+                  <button class="btn btn-danger btn-eliminar btn-sm ml-2 fas fa-trash"
+                    (click)="eliminarHabitacion(habitacion.idhabitacion)"></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente">
+          </pagination-controls>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

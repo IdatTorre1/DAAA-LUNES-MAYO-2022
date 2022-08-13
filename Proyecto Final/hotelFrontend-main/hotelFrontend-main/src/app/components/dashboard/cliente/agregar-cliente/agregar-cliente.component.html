@@ -1,0 +1,67 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="card">
+      <div class="card-header">
+        <h4>Registrar Cliente</h4>
+      </div>
+      <div class="card-body">
+
+        <form (ngSubmit)="onCreate()" novalidate #f="ngForm" class="row g-2 px-3">
+
+          <div class="col-md-6 mb-2">
+            <label class="form-label"><b>Nombre</b></label>
+            <input type="text" class="form-control" name="nombre" placeholder="Ej. Juan" [(ngModel)]="nombre" required>
+          </div>
+
+          <div class="col-md-6 ">
+            <label class="form-label"><b>Apellido</b></label>
+            <input type="text" class="form-control" name="apellido" placeholder="Ej. Perez" [(ngModel)]="apellido"
+              required>
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <label for="cboEstado"><b>Tipo Documento</b></label>
+            <select id="cboEstado" class="form-select" name="tipodocumento" id="tipodocumento"
+              [(ngModel)]="tipodocumento">
+              <option value="DNI">DNI</option>
+              <option value="PASAPORTE">PASAPORTE</option>
+              <option value="CARNET DE EXTRANJERIA">CARNET DE EXTRANJERIA</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label"><b>Num. Documento</b></label>
+            <input type="text" class="form-control" name="numdocumento" placeholder="Ej. 12345678"
+              [(ngModel)]="numdocumento" required>
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <label class="form-label"><b>Telefono</b></label>
+            <input type="text" class="form-control" name="telefono" placeholder="Ej. 999666333" [(ngModel)]="telefono"
+              required>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label"><b>Correo</b></label>
+            <input type="email" class="form-control" name="correo" placeholder="Ej. usuario@gmail.com"
+              [(ngModel)]="correo" required>
+          </div>
+
+
+          <div class="d-grid gap-2 d-md-flex p-3 justify-content-between">
+            <button class="btn btn-danger" type="button" [routerLink]="['/dashboard/cliente']"
+              routerLinkActive="router-link-active">Cancelar</button>
+            <button class="btn btn-success me-md-2" [disabled]="!f.valid" type="submit">Agregar</button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
+
+  </div>
+
+</div>

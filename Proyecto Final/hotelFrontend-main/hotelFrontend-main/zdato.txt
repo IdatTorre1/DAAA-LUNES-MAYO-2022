@@ -1,0 +1,13 @@
+/*crear componetes*/
+ng g c components/dashboard/persona --skip-tests
+/*crear servico*/
+ng g s services/cliente --skip-tests
+/*crear class*/
+ng g class models/cliente --skip-tests
+/*Usuarios*/
+/*rol admin*/
+correo : admin@gmail.com
+password : 123456
+/*rol usuario*/
+correo : user@gmail.com
+password : 123456

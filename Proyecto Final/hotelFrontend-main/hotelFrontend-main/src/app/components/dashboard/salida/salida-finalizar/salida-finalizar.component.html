@@ -1,0 +1,150 @@
+<div class="card shadow-sm">
+  <div class="card-body p-3">
+    <h6 class="card-title font-weight-bold text-primary">Resumen de la Habitación</h6>
+    <hr class="mt-1 mb-1" />
+    <div class="form-row">
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold mb-0">Número:</label>
+        <label class="form-text">{{numero}}</label>
+      </div>
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold mb-0">Detalles:</label>
+        <label class="form-text">{{detalle}}</label>
+      </div>
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold mb-0">Categoria:</label>
+        <label class="form-text">{{categoria}}</label>
+      </div>
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold mb-0">Piso:</label>
+        <label class="form-text">{{piso}}</label>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold mb-0">Cliente:</label>
+        <label class="form-text mb-0">{{nombreApellido}}</label>
+      </div>
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold mb-0">Nro. Documento:</label>
+        <label class="form-text mb-0">{{numdocumento}}</label>
+      </div>
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold mb-0">Correo:</label>
+        <label class="form-text mb-0">{{correo}}</label>
+      </div>
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold mb-0">Fecha Entrada:</label>
+        <label class="form-text mb-0">{{fechaEntrada}}</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card shadow-sm mt-2">
+  <div class="card-body p-3">
+    <h6 class="card-title font-weight-bold text-primary">Costo de Hospedaje</h6>
+    <hr class="mt-1 mb-1" />
+    <div class="form-row">
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold">Costo Habitacion:</label>
+        <input type="number" name="costohabitacion" class="form-control form-control-sm" id="validationCustom01"
+          disabled="disabled" value="{{ costohabitacion  | number : '1.2-2'  }}">
+
+      </div>
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold">Cantidad Adelantado:</label>
+        <input type="number" class="form-control form-control-sm" name="cantidadAdelanto" [(ngModel)]="cantidadAdelanto"
+          disabled="disabled">
+      </div>
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold">Cantidad Restante:</label>
+        <input type="number" class="form-control form-control-sm" name="cantidadRestante" [(ngModel)]="cantidadRestante"
+          disabled="disabled">
+      </div>
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold">Costo por Penalida:</label>
+        <input type="text" class="form-control form-control-sm" name="costopenalidad" [(ngModel)]="costopenalidad">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card shadow-sm mt-2">
+  <div class="card-body p-3">
+    <h6 class="card-title font-weight-bold text-primary">Servicio a la Habitación</h6>
+    <hr class="mt-1 mb-2" />
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-bordered table-sm">
+          <thead class="thead-dark">
+            <tr>
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>Precio Unitario</th>
+              <th>Sub Total</th>
+              <th>Estado Venta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of prueba">
+              <td>{{item.producto.nombre}}</td>
+              <td>{{item.cantidad}}</td>
+              <td>{{item.producto.precio | number : '1.2-2'}}</td>
+              <td>{{item.subtotal | number : '1.2-2'}}</td>
+              <!-- <td >{{item.venta.estado}}</td> -->
+              <td *ngIf="item.venta.estado === 'Cancelado'; else noActivo">
+                <span class="badge badge-success p-2">{{item.venta.estado}}</span>
+              </td>
+              <ng-template #noActivo>
+                <td>
+                  <span class="badge badge-danger p-2">{{item.venta.estado}}</span>
+                </td>
+              </ng-template>
+
+            </tr>
+
+            <tr *ngIf="prueba.length <= 0">
+              <td colspan="5">
+                <div class="alert alert-secondary border-0" role="alert">
+                  No se encontraron registros
+                </div>
+              </td>
+            </tr>
+            <!-- elser -->
+            <!-- <tr>
+              <td colspan="5">
+                <div class="alert alert-secondary border-0" role="alert">
+                  No se encontraron registros
+                </div>
+              </td>
+            </tr> -->
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="card shadow-sm mt-2">
+
+  <div class="card-body">
+    <div class="row justify-content-end">
+      <div class="col-4">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Total a Pagar</label>
+          </div>
+          <input type="text" class="form-control bg-white" name="preciofinal" disabled="disabled"
+            value="{{preciofinal | number : '1.2-2' }}">
+        </div>
+      </div>
+      <div class="col-2">
+        <button id="btnfinalizarrecepcion" class="btn btn-primary btn-block" type="button"
+          (click)="finalizarRecepcion()">Finalizar Recepción</button>
+      </div>
+    </div>
+  </div>
+</div>

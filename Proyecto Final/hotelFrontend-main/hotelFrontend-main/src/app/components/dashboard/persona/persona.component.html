@@ -1,0 +1,71 @@
+<div class="card shadow mb-4">
+  <div class="card-header py-3 bg-light">
+    <h6 class="m-0 font-weight-bold text-dark">Modulo de Usuarios</h6>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <button class="btn btn-success btn-sm" type="button" [routerLink]="['/dashboard/agregar-persona']"
+          routerLinkActive="router-link-active">Crear Nuevo</button>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="tabla" style="width:100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Correo</th>
+                <th>Rol</th>
+                <th>Estado</th>
+                <th class="text-center">Acciones</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Correo</th>
+                <th>Rol</th>
+                <th>Estado</th>
+                <th class="text-center">Acciones</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              <tr *ngFor="let persona of personas | paginate: { itemsPerPage: 5, currentPage: page}">
+                <td>{{persona.dni}}</td>
+                <td>{{persona.nombre}}</td>
+                <td>{{persona.apellido}}</td>
+                <td>{{persona.correo}}</td>
+                <td *ngIf="persona.roles.length===2"><b>ADMIN</b></td>
+                <td *ngIf="persona.roles.length===1"><b>USUARIO</b></td>
+                <td *ngIf="persona.estado; else noActivo">
+                  <span class="badge badge-success p-2">Activo</span>
+                </td>
+                <ng-template #noActivo>
+                  <td>
+                    <span class="badge badge-danger p-2">No Activo</span>
+                  </td>
+                </ng-template>
+                <td class="text-center">
+                  <button class="btn btn-primary btn-editar btn-sm fas fa-pen"
+                    (click)="editarPersona(persona.idpersona)"></button>
+                  <button class="btn btn-danger btn-eliminar btn-sm ml-2 fas fa-trash"
+                    (click)="eliminarPersona(persona.idpersona)"></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente">
+          </pagination-controls>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

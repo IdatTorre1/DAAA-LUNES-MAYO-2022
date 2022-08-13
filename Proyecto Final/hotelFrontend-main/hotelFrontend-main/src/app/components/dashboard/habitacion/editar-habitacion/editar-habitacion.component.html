@@ -1,0 +1,95 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-8 offset-md-2">
+
+      <div class="card">
+        <div class="card-header">
+          <h4>Actualizar Habitación</h4>
+        </div>
+        <div class="card-body">
+
+          <form (ngSubmit)="onUpdate()">
+
+            <div class="form-group">
+              <label class="form-label">ID:</label>
+              <input type="number" class="form-control" readonly name="id" [(ngModel)]="id">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Numero:</label>
+              <input type="text" class="form-control" name="numero" placeholder="Ej. 001"
+                [(ngModel)]="habitacion.numero">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Detalle:</label>
+              <input type="text" class="form-control" placeholder="Ej. WIFI + BAÑO + TV + CABLE" name="detalle"
+                [(ngModel)]="habitacion.detalle">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Precio:</label>
+              <input type="number" class="form-control" placeholder="Ej. 80" name="precio"
+                [(ngModel)]="habitacion.precio">
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-12 mb-3 mb-sm-0">
+                <label for="cboEstado">Estado Habitacion:</label>
+                <select id="cboEstado" class="form-control" name="idestadohabitacion"
+                  [(ngModel)]="habitacion.estadoHabitacion.idestadohabitacion">
+                  <option [value]="iteme.idestadohabitacion" *ngFor="let iteme of estadohabitacion">
+                    {{iteme.descripcion}}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <div class="col-sm-12 mb-3 mb-sm-0">
+                <label for="cboEstado">Pisos:</label>
+                <select id="cboEstado" class="form-control" name="idpiso" [(ngModel)]="habitacion.piso.idpiso">
+                  <option [value]="itemp.idpiso" *ngFor="let itemp of pisos">{{itemp.descripcion}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-12 mb-3 mb-sm-0">
+                <label for="cboEstado">Categoria:</label>
+                <select id="cboEstado" class="form-control" name="idcategoria"
+                  [(ngModel)]="habitacion.categoria.idcategoria">
+                  <option [value]="item.idcategoria" *ngFor="let item of categorias">{{item.descripcion}}</option>
+                </select>
+              </div>
+            </div>
+
+
+
+            <div class="form-group row">
+              <div class="col-sm-12 mb-3 mb-sm-0">
+                <label for="cboEstado">Estado:</label>
+                <select id="cboEstado" class="form-control" name="estado" [(ngModel)]="habitacion.estado">
+                  <option value="true">Activo</option>
+                  <option value="false">No Activo</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex p-3 justify-content-between">
+              <button class="btn btn-danger" type="button" [routerLink]="['/dashboard/habitacion']"
+                routerLinkActive="router-link-active">Cancelar</button>
+              <button class="btn btn-success me-md-2" type="submit">Actualizar</button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

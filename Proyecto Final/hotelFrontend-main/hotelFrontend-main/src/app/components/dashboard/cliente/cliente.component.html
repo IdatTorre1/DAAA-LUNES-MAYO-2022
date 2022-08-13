@@ -1,0 +1,56 @@
+<div class="card shadow mb-4">
+  <div class="card-header py-3 bg-light">
+    <h6 class="m-0 font-weight-bold text-dark">Modulo de Clientes</h6>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <button class="btn btn-success btn-sm" type="button" [routerLink]="['/dashboard/agregar-cliente']"
+          routerLinkActive="router-link-active">Crear
+          Nuevo</button>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="tabla" style="width:100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Tipo Documento</th>
+                <th>Num. Documento</th>
+                <th>Telefono</th>
+                <th>Correo</th>
+                <th class="text-center">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cliente of clientes | paginate: { itemsPerPage: 5, currentPage: page}">
+                <td>{{cliente.nombre}}</td>
+                <td>{{cliente.apellido}}</td>
+                <td>{{cliente.tipodocumento}}</td>
+                <td>{{cliente.numdocumento}}</td>
+                <td>{{cliente.telefono}}</td>
+                <td>{{cliente.correo}}</td>
+
+                <td class="text-center">
+                  <button class="btn btn-primary btn-editar btn-sm fas fa-pen"
+                    (click)="actualizarCliente(cliente.idcliente)"></button>
+                  <button *ngIf="isAdmin" class="btn btn-danger btn-eliminar btn-sm ml-2 fas fa-trash"
+                    (click)="eliminarCliente(cliente.idcliente)"></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente">
+          </pagination-controls>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

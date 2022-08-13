@@ -1,0 +1,84 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="card">
+      <div class="card-header">
+        <h4>Registrar Habitación</h4>
+      </div>
+      <div class="card-body">
+
+        <form (ngSubmit)="onCreate()" class="row g-2 px-3">
+
+          <div class="col-md-6 mb-2">
+            <label class="form-label"><b>Numero</b></label>
+            <input type="text" class="form-control" placeholder="Ej. 001" name="numero" [(ngModel)]="numero">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label"><b>Precio</b></label>
+            <input type="number" class="form-control" placeholder="Ej. 80" name="precio" [(ngModel)]="precio">
+          </div>
+
+          <div class="col-md-12 mb-2">
+            <label class="form-label"><b>Detalle</b></label>
+            <input type="text" class="form-control" placeholder="Ej. WIFI + BAÑO + TV + CABLE" name="detalle"
+              [(ngModel)]="detalle">
+          </div>
+
+
+
+          <div class="form-group col-md-6">
+            <label for="cboEstado"><b>Estado Habitacion</b></label>
+            <select id="cboEstado" class="form-select" name="estadohabitacionSelecionada"
+              [(ngModel)]="estadohabitacionSelecionada">
+              <option [ngValue]="iteme" *ngFor="let iteme of estadohabitacion; let i = index">
+                {{iteme.descripcion}}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="cboPiso"><b>Pisos</b></label>
+            <select id="cboPiso" class="form-select" name="pisoSelecionado" [(ngModel)]="pisoSelecionado">
+              <option [ngValue]="itemp" *ngFor="let itemp of pisos; let i = index">
+                {{itemp.descripcion}}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="cboCategoria"><b>Categoria</b></label>
+            <select id="cboCategoria" class="form-select" name="categoriaSelecionada"
+              [(ngModel)]="categoriaSelecionada">
+              <option [ngValue]="itemc" *ngFor="let itemc of categorias; let i = index">
+                {{itemc.descripcion}}
+              </option>
+            </select>
+          </div>
+
+          <!--  [attr.selected]="!i" -->
+
+          <div class="form-group col-md-6">
+            <label for="cboEstado"><b>Estado</b></label>
+            <select id="cboEstado" class="form-control" name="estado" [(ngModel)]="estado">
+              <option value="true">Activo</option>
+              <option value="false">No Activo</option>
+            </select>
+          </div>
+
+          <div class="d-grid gap-2 d-md-flex p-3 justify-content-between">
+            <button class="btn btn-danger" type="button" [routerLink]="['/dashboard/habitacion']"
+              routerLinkActive="router-link-active">Cancelar</button>
+            <button class="btn btn-success me-md-2" type="submit">Agregar</button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
+
+  </div>
+
+</div>

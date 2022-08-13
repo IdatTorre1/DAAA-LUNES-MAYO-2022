@@ -1,0 +1,59 @@
+<div class="card">
+  <div class="card-body">
+    <div class="form-group row">
+      <label for="inputPassword" class="col-sm-2 col-form-label">Seleccionar Piso</label>
+      <div class="col-sm-4">
+        <select class="form-control" id="cbopiso" [(ngModel)]="idpiso" (change)="cambio()">
+          <option value="TODOS">TODOS</option>
+          <option [value]="item.idpiso" *ngFor="let item of piso">
+            {{item.descripcion}}
+          </option>
+        </select>
+
+      </div>
+    </div>
+    <hr />
+    <div id="habitaciones" class="row">
+
+
+
+      <div class="col-xl-3 col-md-6 mb-4 mano" *ngFor="let item of habitacionesOcupadas"
+        (click)="salida(item.idhabitacion)">
+        <!-- class="card border-success rounded-0" -->
+        <div class="card border-warning rounded-0">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+
+                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                  NRO : {{item.numero}}
+                </div>
+
+                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1 mt-1">
+                  Categoria : {{item.categoria.descripcion}}
+                </div>
+
+              </div>
+
+              <div class="col-auto">
+                <i class="fas fa-bed fa-2x text-warning"></i>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="card-footer d-flex bg-warning align-items-center justify-content-between rounded-0">
+            <a class="small text-white stretched-link text-uppercase font-weight-bold select-habitacion">
+              Iniciar Venta</a>
+            <div class="small text-white">
+              <i class="fas fa-angle-right"></i>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>

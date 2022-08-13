@@ -1,0 +1,137 @@
+<div class="card shadow-sm">
+  <div class="card-body p-3">
+    <h6 class="card-title font-weight-bold text-primary">Resumen de la Habitación</h6>
+    <hr class="mt-1 mb-1" />
+    <div class="form-row">
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold mb-0">Número:</label>
+        <label class="form-text">{{numero}}</label>
+      </div>
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold mb-0">Detalles:</label>
+        <label class="form-text">{{detalle}}</label>
+      </div>
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold mb-0">Categoria:</label>
+        <label class="form-text">{{categoria}}</label>
+      </div>
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold mb-0">Piso:</label>
+        <label class="form-text">{{piso}}</label>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold mb-0">Cliente:</label>
+        <label class="form-text mb-0">{{nombreApellido}}</label>
+      </div>
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold mb-0">Nro. Documento:</label>
+        <label class="form-text mb-0">{{numdocumento}}</label>
+      </div>
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold mb-0">Correo:</label>
+        <label class="form-text mb-0">{{correo}}</label>
+      </div>
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold mb-0">Fecha Entrada:</label>
+        <label class="form-text mb-0">{{fechaentrada}}</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mt-3 shadow-sm">
+  <div class="card-header card-title font-weight-bold text-primary">
+    Detalle venta
+  </div>
+  <div class="card-body p-3">
+    <div class="form-row align-items-end">
+      <div class="col-md-3">
+        <label for="validationCustom01">Producto:</label>
+        <select class="form-select" id="cboProducto" name="productoDELcbo" [(ngModel)]="productoDELcbo"
+          (change)="cambio()">
+          <option [ngValue]="item" *ngFor="let item of productos">
+            {{item.nombre}}
+          </option>
+          <!-- <option [value]="item.idproducto" *ngFor="let item of productos">
+            {{item.nombre}}
+          </option> -->
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label for="validationCustom01">Precio:</label>
+        <input type="text" class="form-control" id="txtprecio" [(ngModel)]="precioProducto" disabled="disabled">
+      </div>
+      <div class="col-md-2">
+        <label for="validationCustom01">Cantidad</label>
+        <input type="number" class="form-control" [(ngModel)]="cantidadPro" id="txtcantidad" value="1" min="1" max="50">
+      </div>
+
+      <div class="col-md-2">
+        <label for="validationCustom01">Stock</label>
+        <input type="number" class="form-control" [(ngModel)]="stock" disabled>
+      </div>
+
+      <div class="col-md-2">
+        <button id="btnagregarproducto" class="btn btn-success btn-block" type="button"
+          (click)="agregarProdTabla()">Agregar</button>
+      </div>
+    </div>
+    <hr />
+
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-bordered table-sm" id="tbventa">
+          <thead class="thead-dark">
+            <tr>
+              <!-- <th></th> -->
+              <th scope="col">Producto</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Precio Unitario</th>
+              <th scope="col">Sub Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let con of tablaproducto">
+              <td>{{con.nombrePro}}</td>
+              <td>{{con.cantidad}}</td>
+              <td>{{con.precioUnitatio}}</td>
+              <td>{{con.subtotalD}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <div class="row justify-content-end">
+      <div class="col-3 align-self-end">
+        <table class="table table-sm border-dark border-right border-top border-bottom">
+          <tr>
+            <td class="bg-dark text-white">Total Pagar</td>
+            <td><label id="lbltotalpagar" class="m-0">{{totalPagar}}</label></td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+    <hr />
+    <div class="row justify-content-end">
+      <div class="col-4">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Estado Venta</label>
+          </div>
+          <select class="custom-select" id="cboestadoventa" [(ngModel)]="estado">
+            <option value="Pendiente">Pendiente</option>
+            <option value="Cancelado">Cancelado</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-2">
+        <button id="btnfinalizarventa" class="btn btn-primary btn-block" type="button"
+          (click)="guardarVenta()">Finalizar Venta</button>
+      </div>
+    </div>
+  </div>
+</div>

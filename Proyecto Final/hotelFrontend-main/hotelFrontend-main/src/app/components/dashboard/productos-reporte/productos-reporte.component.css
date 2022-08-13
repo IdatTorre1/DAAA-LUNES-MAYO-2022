@@ -1,0 +1,12 @@
+#excel-table {
+  visibility: hidden;
+  display: none;
+}
+#excel-cliente {
+  visibility: hidden;
+  display: none;
+}
+#excel-habitacion {
+  visibility: hidden;
+  display: none;
+}

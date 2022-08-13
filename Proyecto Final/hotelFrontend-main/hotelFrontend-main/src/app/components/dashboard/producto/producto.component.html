@@ -1,0 +1,60 @@
+<div class="card shadow mb-4">
+  <div class="card-header py-3 bg-light">
+    <h6 class="m-0 font-weight-bold text-dark">Modulo de Productos</h6>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <button class="btn btn-success btn-sm" type="button" [routerLink]="['/dashboard/agregar-producto']"
+          routerLinkActive="router-link-active">Crear Nuevo</button>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="tabla" style="width:100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Detalle</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Estado</th>
+                <th class="text-center">Acciones</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let producto of productos | paginate: { itemsPerPage: 5, currentPage: page}">
+                <td>{{producto.nombre}}</td>
+                <td>{{producto.detalle}}</td>
+                <td>{{producto.precio | number : '1.2-2'}}</td>
+                <td>{{producto.cantidad}}</td>
+                <td *ngIf="producto.estado; else noActivo">
+                  <span class="badge badge-success p-2">Activo</span>
+                </td>
+                <ng-template #noActivo>
+                  <td>
+                    <span class="badge badge-danger p-2">No Activo</span>
+                  </td>
+                </ng-template>
+                <td class="text-center">
+                  <button class="btn btn-primary btn-editar btn-sm fas fa-pen"
+                    (click)="editarProducto(producto.idproducto)"></button>
+                  <button class="btn btn-danger btn-eliminar btn-sm ml-2 fas fa-trash"
+                    (click)="eliminarProducto(producto.idproducto)"></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente">
+          </pagination-controls>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

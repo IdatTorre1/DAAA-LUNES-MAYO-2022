@@ -1,0 +1,55 @@
+<div class="card shadow mb-4">
+  <div class="card-header py-3 bg-light">
+    <h6 class="m-0 font-weight-bold text-dark">Modulo de Categorías</h6>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <button class="btn btn-success btn-sm" type="button" [routerLink]="['/dashboard/agregar-categoria']"
+          routerLinkActive="router-link-active">Crear
+          Nuevo</button>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="tabla" style="width:100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Descricion</th>
+                <th>Estado</th>
+                <th class="text-center">Acciones</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let categoria of categorias | paginate: { itemsPerPage: 5, currentPage: page}">
+                <td>{{categoria.descripcion}}</td>
+
+                <td *ngIf="categoria.estado; else noActivo">
+                  <span class="badge badge-success p-2">Activo</span>
+                </td>
+                <ng-template #noActivo>
+                  <td>
+                    <span class="badge badge-danger p-2">No Activo</span>
+                  </td>
+                </ng-template>
+
+                <td class="text-center">
+                  <button class="btn btn-primary btn-editar btn-sm fas fa-pen"
+                    (click)="actualizarCategoria(categoria.idcategoria)"></button>
+                  <button *ngIf="isAdmin" class="btn btn-danger btn-eliminar btn-sm ml-2 fas fa-trash"
+                    (click)="eliminarCategoria(categoria.idcategoria)"></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente">
+          </pagination-controls>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

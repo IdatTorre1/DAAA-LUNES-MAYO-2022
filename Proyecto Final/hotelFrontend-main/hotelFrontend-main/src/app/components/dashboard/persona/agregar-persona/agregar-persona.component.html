@@ -1,0 +1,74 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="card">
+      <div class="card-header">
+        <h4>Registrar Usuario</h4>
+      </div>
+      <div class="card-body">
+
+        <form (ngSubmit)="onCreate()" novalidate #f="ngForm" class="row g-2 px-3">
+
+          <div class="col-md-6 mb-2">
+            <label class="form-label"><b>Nombre</b></label>
+            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ej. Juan"
+              [(ngModel)]="nombre" required>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label"><b>Apellido</b></label>
+            <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Ej. Perez"
+              [(ngModel)]="apellido" required>
+          </div>
+
+          <div class="col-md-8 mb-2">
+            <label class="form-label"><b>DNI</b></label>
+            <input type="text" class="form-control" name="dni" id="dni" placeholder="Ej. 12345678" [(ngModel)]="dni"
+              required>
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <label class="form-label"><b>Correo</b></label>
+            <input type="email" class="form-control" name="correo" id="correo" placeholder="Ej. juan@gmail.com"
+              [(ngModel)]="correo" required>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label"><b>Clave</b></label>
+            <input type="password" class="form-control" name="clave" id="clave" placeholder="contrasenia"
+              [(ngModel)]="clave" required>
+          </div>
+
+
+          <div class="col-md-6 mb-2">
+            <label for="cboRol"><b>Rol</b></label>
+            <select id="cboRol" class="form-control" name="roles" id="roles" [(ngModel)]="roles">
+              <option value="admin">ADMINISTRADOR</option>
+              <option value="user">USUARIO</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label for="cboEstado"><b>Estado</b></label>
+            <select id="cboEstado" class="form-control" name="estado" id="estado" [(ngModel)]="estado">
+              <option value="true">Activo</option>
+              <option value="false">No Activo</option>
+            </select>
+          </div>
+
+          <div class="d-grid gap-2 d-md-flex p-3 justify-content-between">
+            <button class="btn btn-danger" type="button" [routerLink]="['/dashboard/persona']"
+              routerLinkActive="router-link-active">Cancelar</button>
+            <button class="btn btn-success me-md-2" [disabled]="!f.valid" type="submit">Agregar</button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
+
+  </div>
+
+</div>

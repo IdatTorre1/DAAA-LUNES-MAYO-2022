@@ -1,0 +1,64 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="card">
+      <div class="card-header">
+        <h4>Registrar Producto</h4>
+      </div>
+      <div class="card-body">
+
+        <form (ngSubmit)="onSubmit()" class="row g-2 px-3">
+
+          <div class="col-md-6 mb-2">
+            <label><b>Nombre</b></label>
+            <input type="text" class="form-control" id="nombre" [(ngModel)]="nombre" name="nombre" required
+              placeholder="Ej. : gaseosa">
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <label><b>Precio</b></label>
+            <input type="text" class="form-control" id="precio" [(ngModel)]="precio" name="precio" required
+              placeholder="Ej. : 15">
+          </div>
+
+          <div class="form-group">
+            <label><b>Detalle</b></label>
+            <textarea class="form-control" name="detalle" [(ngModel)]="detalle" placeholder="350 ML"
+              required></textarea>
+            <!-- <input type="text" class="form-control" id="detalle" [(ngModel)]="detalle" name="detalle" required
+              placeholder="Ej. : 350 ML"> -->
+          </div>
+
+
+
+          <div class="col-md-6 mb-2">
+            <label><b>Cantidad</b></label>
+            <input type="text" class="form-control" id="cantidad" [(ngModel)]="cantidad" name="cantidad" required
+              placeholder="Ej. : 35">
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <div class="col-sm-12 mb-3 mb-sm-0">
+              <label for="cboEstado"><b>Estado</b></label>
+              <select id="cboEstado" class="form-control" name="estado" id="estado" [(ngModel)]="estado">
+                <option value="true">Activo</option>
+                <option value="false">No Activo</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="d-grid gap-2 d-md-flex p-3 justify-content-between">
+            <button class="btn btn-danger" type="button" [routerLink]="['/dashboard/producto']"
+              routerLinkActive="router-link-active">Cancelar</button>
+            <button class="btn btn-success me-md-2" type="submit">Agregar</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+
+  </div>
+
+</div>

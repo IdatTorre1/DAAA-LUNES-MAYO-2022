@@ -1,0 +1,85 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-8 offset-md-2">
+
+      <div class="card">
+        <div class="card-header">
+          <h4>Registrar Usuario</h4>
+        </div>
+        <div class="card-body">
+
+          <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+
+            <div class="form-group">
+              <label class="form-label">ID</label>
+              <input type="text" readonly class="form-control" name="idpersona" id="idpersona" placeholder="Ej. 1"
+                [(ngModel)]="id">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">DNI</label>
+              <input type="text" class="form-control" name="dni" id="dni" placeholder="Ej. 12345678" [(ngModel)]="dni"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Nombre</label>
+              <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ej. Juan"
+                [(ngModel)]="nombre" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Apellido</label>
+              <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Ej. Perez"
+                [(ngModel)]="apellido" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Correo</label>
+              <input type="email" class="form-control" name="correo" id="correo" placeholder="Ej. juan@gmail.com"
+                [(ngModel)]="correo" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Clave</label>
+              <input type="password" class="form-control" name="clave" id="clave" placeholder="contrasenia"
+                [(ngModel)]="clave" required>
+            </div>
+
+
+            <div class="form-group row">
+              <div class="col-sm-12 mb-3 mb-sm-0">
+                <label for="cboRol">Rol</label>
+                <select id="cboRol" class="form-control" name="roles" id="roles" [(ngModel)]="roles">
+                  <option value="admin">ADMINISTRADOR</option>
+                  <option value="user">USUARIO</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-12 mb-3 mb-sm-0">
+                <label for="cboEstado">Estado</label>
+                <select id="cboEstado" class="form-control" name="estado" id="estado" [(ngModel)]="estado">
+                  <option value="true">Activo</option>
+                  <option value="false">No Activo</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex p-3 justify-content-between">
+              <button class="btn btn-danger" type="button" [routerLink]="['/dashboard/persona']"
+                routerLinkActive="router-link-active">Cancelar</button>
+              <button class="btn btn-success me-md-2" [disabled]="!f.valid" type="submit">Actualizar</button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

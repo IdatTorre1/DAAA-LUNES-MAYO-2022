@@ -1,0 +1,173 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <input type="hidden" value="@Html.DisplayTextFor(model => model.IdHabitacion)" id="txtidhabitacion" />
+    <h5 class="card-title font-weight-bold text-primary">Detalles de la Habitación</h5>
+    <div class="row">
+      <div class="col-6">
+        <div class="row">
+          <label for="staticEmail" class="col-4 col-form-label font-weight-bold">Número:</label>
+          <div class="col-sm-8">
+            <label class="col-form-label">{{numero}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="staticEmail" class="col-4 col-form-label font-weight-bold">Detalles:</label>
+          <div class="col-sm-8">
+            <label class="col-form-label">{{detalle}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="row">
+          <label for="staticEmail" class="col-4 col-form-label font-weight-bold">Categoria:</label>
+          <!-- <div class="col-sm-8">
+            <select [(ngModel)]="categoria" class="form-select" disabled>
+              <option *ngFor="let item of categorias" [value]="item.idcategoria">{{item.descripcion}}</option>
+            </select>
+          </div> -->
+          <div class="col-sm-8">
+            <label class="col-form-label">{{categoria}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label for="staticEmail" class="col-4 col-form-label font-weight-bold">Piso:</label>
+          <div class="col-sm-8">
+            <label class="col-form-label">{{piso}}</label>
+            <!-- <select [(ngModel)]="piso" class="form-select" disabled>
+              <option *ngFor="let item of pisos" [value]="item.idpiso">{{item.descripcion}}</option>
+            </select> -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+<div class="card mt-2 border-primary">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-6">
+
+        <h5 class="card-title font-weight-bold text-primary">Detalle Cliente</h5>
+        <input type="hidden" id="txtidcliente" value="0" />
+        <div class="form-group mb-2">
+          <label for="exampleFormControlInput1">Nro Documento:</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="txtdocumento" name="numdocumento" [(ngModel)]="numdocumento">
+            <div class="input-group-append">
+              <button class="btn btn-success" id="btnbuscar" type="button" data-bs-toggle="modal"
+                data-bs-target="#clientemodal">Buscar</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group mb-2">
+          <label for="exampleFormControlSelect1">Tipo Documento:</label>
+          <select class="form-select" id="cbotipodocumento" name="tipodocumento" [(ngModel)]="tipodocumento" disabled>
+            <option value="DNI">DNI</option>
+            <option value="PASAPORTE">PASAPORTE</option>
+            <option value="CARNET EXTRANJERIA">CARNET EXTRANJERIA</option>
+          </select>
+        </div>
+        <div class="form-group mb-2">
+          <label for="exampleFormControlInput1">Nombres:</label>
+          <input type="text" class="form-control" id="txtnombres" name="nombre" [(ngModel)]="nombre">
+        </div>
+        <div class="form-group mb-2">
+          <label for="exampleFormControlInput1">Apellidos:</label>
+          <input type="text" class="form-control" id="txtapellidos" name="apellido" [(ngModel)]="apellido">
+        </div>
+        <div class="form-group mb-2">
+          <label for="exampleFormControlInput1">Correo:</label>
+          <input type="email" class="form-control" id="txtcorreo" name="correo" [(ngModel)]="correo">
+        </div>
+      </div>
+      <div class="col-6">
+        <h5 class="card-title font-weight-bold text-primary">Detalle Reservación</h5>
+        <div class="form-row">
+          <div class="form-group col-md-6 mb-2">
+            <label for="inputEmail4">Fecha Entrada:</label>
+            <input type="text" class="form-control" id="txtfechaentrada" name="fecha" [(ngModel)]="fecha"
+              disabled="disabled">
+          </div>
+          <div class="form-group col-md-6 mb-2">
+            <label for="inputPassword4">Fecha Salida:</label>
+            <input type="date" class="form-control" id="txtfechasalida" name="fechaSalida" [(ngModel)]="fechaSalida"
+              (change)="fechaEntrada()">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6 mb-2">
+            <label for="inputEmail4">Precio:</label>
+            <input type="number" class="form-control" id="txtprecio" disabled="disabled" [(ngModel)]="precioinicial">
+            <input type="hidden" class="form-control" id="txtpreciobase" name="precioEstatico" disabled="disabled"
+              [(ngModel)]="precioEstatico">
+          </div>
+          <div class="form-group col-md-6 mb-2">
+            <label for="inputPassword4">Adelanto:</label>
+            <input type="text" class="form-control" id="txtadelanto" name="adelanto" [(ngModel)]="adelanto">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Observación:</label>
+          <textarea class="form-control" id="txtobservacion" name="observacion" rows="3"
+            [(ngModel)]="observacion"></textarea>
+        </div>
+        <div class="form-row justify-content-end">
+
+          <button type="button" class="btn btn-primary w-25" id="btnregistrar" (click)="onCreate()">Registrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal -->
+<div id="clientemodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Lista de Clientes</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="tablalector" style="width:100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Documento</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Correo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let cliente of clientes">
+                    <td>
+                      <button class="btn btn-primary btn-sm" (click)="carga(cliente.idcliente)" data-bs-dismiss="modal">
+                        <i class="fas fa-check"></i>
+                      </button>
+                    </td>
+                    <td>{{cliente.numdocumento}}</td>
+                    <td>{{cliente.nombre}}</td>
+                    <td>{{cliente.apellido}}</td>
+                    <td>{{cliente.correo}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

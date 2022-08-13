@@ -1,0 +1,184 @@
+<!-- <app-menu></app-menu> -->
+
+<div id="wrapper">
+  <!-- Sidebar -->
+  <ul class="navbar-nav fondo sidebar sidebar-dark accordion" id="accordionSidebar">
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" [routerLink]="['/dashboard']">
+      <div class="sidebar-brand-icon">
+        <i class="far fa-building"></i>
+      </div>
+      <div class="sidebar-brand-text mx-2">{{nombrehotel}}</div>
+    </a>
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item mt-2">
+      <a class="nav-link">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span [routerLink]="['/dashboard']" style="cursor: pointer;">Dashboard</span>
+      </a>
+    </li>
+    <hr class="sidebar-divider my-0">
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+        aria-controls="collapseTwo">
+        <i class="fas fa-concierge-bell"></i>
+        <span>Gestion</span>
+      </a>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" [routerLink]="['recepcion']" routerLinkActive="router-link-active">Recepción</a>
+          <a class=" collapse-item" [routerLink]="['salida']" routerLinkActive="router-link-active">Salida</a>
+        </div>
+      </div>
+    </li>
+    <!-- Nav Item - Utilities Collapse Menu -->
+
+    <li class="nav-item">
+
+      <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true"
+        aria-controls="collapseUtilities">
+        <i class="fas fa-fax"></i>
+        <span>Tienda</span>
+      </a>
+
+      <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" [routerLink]="['vender']" routerLinkActive="router-link-active">Vender</a>
+
+          <a *ngIf="isAdmin" class="collapse-item" [routerLink]="['producto']">Productos</a>
+        </div>
+      </div>
+    </li>
+
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li *ngIf="isAdmin" class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseamantenimiento" aria-expanded="true"
+        aria-controls="collapseamantenimiento">
+        <i class="fas fa-fw fa-wrench"></i>
+        <span>Mantenimiento</span>
+      </a>
+      <div id="collapseamantenimiento" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" [routerLink]="['hotel']">Hotel</a>
+          <a class="collapse-item" [routerLink]="['habitacion']">Habitaciones</a>
+          <a class="collapse-item" [routerLink]="['categoria']">Categoria</a>
+          <a class="collapse-item" [routerLink]="['piso']">Pisos</a>
+        </div>
+      </div>
+    </li>
+
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseReporte" aria-expanded="true"
+        aria-controls="collapseReporte">
+        <i class="fas fa-chart-line"></i>
+        <span>Reportes</span>
+      </a>
+      <div id="collapseReporte" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" [routerLink]="['recepcion-reporte']"
+            routerLinkActive="router-link-active">Recepciones</a>
+          <a class="collapse-item" [routerLink]="['producto-reporte']"
+            routerLinkActive="router-link-active">Mantenimiento</a>
+        </div>
+      </div>
+    </li>
+
+
+    <!-- Nav Item - Charts -->
+    <li class="nav-item" *ngIf="isAdmin">
+      <a class="nav-link" [routerLink]="['persona']" routerLinkActive="router-link-active">
+        <i class="fas fa-user-shield"></i>
+        <span>Usuarios</span>
+      </a>
+    </li>
+
+
+
+    <!-- Nav Item - Charts -->
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['cliente']" routerLinkActive="router-link-active">
+        <i class="fas fa-user-friends"></i>
+        <span>Clientes</span>
+      </a>
+    </li>
+
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+      <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+  </ul>
+  <!-- End of Sidebar -->
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+      <!-- Topbar -->
+      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <!-- Sidebar Toggle (Topbar) -->
+        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+          <i class="fa fa-bars"></i>
+        </button>
+        <ul class="navbar-nav ml-auto">
+
+          <div class="topbar-divider d-none d-sm-block"></div>
+          <!-- Nav Item - User Information -->
+          <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{nombreUsuario}}</span>
+              <i class="fas fa-user-shield" style="font-size:25px;font-weight:bold"></i>
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+
+              <a class="dropdown-item" [routerLink]="['perfil']" routerLinkActive="router-link-active">
+                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                Mi Perfil
+              </a>
+
+              <a class="dropdown-item" (click)="onLogOut()">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                Salir
+              </a>
+            </div>
+
+
+          </li>
+        </ul>
+      </nav>
+      <!-- End of Topbar -->
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <!-- Page Heading -->
+
+        <router-outlet>
+
+        </router-outlet>
+
+
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>Copyright &copy; - {{nombrehotel}}- {{anio}}</span>
+          <label>
+          </label>
+        </div>
+      </div>
+    </footer>
+    <!-- End of Footer -->
+  </div>
+  <!-- End of Content Wrapper -->
+</div>

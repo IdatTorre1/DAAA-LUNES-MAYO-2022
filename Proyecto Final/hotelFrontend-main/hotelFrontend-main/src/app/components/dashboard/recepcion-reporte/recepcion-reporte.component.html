@@ -1,0 +1,94 @@
+<div class="card shadow-sm mt-2">
+  <div class="card-body p-3">
+    <h6 class="card-title font-weight-bold text-primary">Exportar Recepciones</h6>
+    <hr class="mt-1 mb-1" />
+
+    <div class="form-row align-items-end">
+      <div class="col-md-3 mt-4">
+        <label class="form-text font-weight-bold">Toda las recpciones :</label>
+      </div>
+
+      <div class="col-md-3 mt-4">
+        <button class="btn btn-block btn-success" (click)="exportexcel()"><i class="fas fa-cloud-download-alt"></i>
+          Descargar</button>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="form-row align-items-end">
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold">Estado:</label>
+        <select id="cboestado" name="estado" class="form-control">
+          <option value="2">Todos</option>
+          <option value="1">Activo</option>
+          <option value="0">No Activo</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold">Fecha Inicio:</label>
+        <input type="date" name="fechainicio" class="form-control" />
+      </div>
+      <div class="col-md-3">
+        <label class="form-text font-weight-bold">Fecha Fin:</label>
+        <input type="date" name="fechafin" class="form-control" />
+      </div>
+      <div class="col-md-3">
+        <button type="submit" class="btn btn-block btn-success"><i class="fas fa-cloud-download-alt"></i>
+          Descargar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<table class="table table-bordered" id="excel-recepcion" style="width:100%" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Numero</th>
+      <th>Detalle</th>
+      <th>Precio Hab.</th>
+      <th>Categoria</th>
+      <th>Piso</th>
+      <th>Atendido por</th>
+      <th>Cliente</th>
+      <th>Correo</th>
+      <th>Telefono</th>
+      <th>Tipo de Doc.</th>
+      <th>Num. Doc. Cliente</th>
+      <th>Fecha Entrada</th>
+      <th>Fecha Salida</th>
+      <th>Adelanto</th>
+      <th>Precio Restante</th>
+      <th>Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let recepcion of recepciones">
+      <td>{{recepcion.habitacion.numero}}</td>
+      <td>{{recepcion.habitacion.detalle}}</td>
+      <td>{{recepcion.habitacion.precio}}</td>
+      <td>{{recepcion.habitacion.categoria.descripcion}}</td>
+      <td>{{recepcion.habitacion.piso.descripcion}}</td>
+      <td>{{recepcion.persona.nombre}}, {{recepcion.persona.apellido}}</td>
+      <td>{{recepcion.cliente.nombre}}, {{recepcion.cliente.apellido}}</td>
+      <td>{{recepcion.cliente.correo}}</td>
+      <td>{{recepcion.cliente.telefono}}</td>
+      <td>{{recepcion.cliente.tipodocumento}}</td>
+      <td>{{recepcion.cliente.numdocumento}}</td>
+      <td>{{recepcion.fechaentrada}}</td>
+      <td>{{recepcion.fechasalida}}</td>
+      <td>{{recepcion.adelanto}}</td>
+      <td>{{recepcion.preciorestante}}</td>
+      <td *ngIf="recepcion.estado; else noActivo">
+        <span class="badge badge-success p-2">Activo</span>
+      </td>
+      <ng-template #noActivo>
+        <td>
+          <span class="badge badge-danger p-2">No Activo</span>
+        </td>
+      </ng-template>
+    </tr>
+  </tbody>
+</table>
